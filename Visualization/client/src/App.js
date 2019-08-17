@@ -58,7 +58,7 @@ class App extends React.Component {
             getRadius: d => Math.sqrt(d.exits),
             getFillColor: d => {return d.current_status === this.state.group ? [80, 80, 255]:[255, 140, 0]},
             getLineColor: d => [0, 0, 0],
-            fp64: true,s
+            fp64: true,
           });
           return [layer];
     }

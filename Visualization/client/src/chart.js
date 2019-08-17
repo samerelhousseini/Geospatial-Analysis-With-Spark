@@ -10,59 +10,33 @@ import {
     YAxis
 } from "react-vis";
  
-//import { highlightInChart, selectInChart } from "./actions";
-//import {modeConfig, themes} from './constants';
+
 
 class Chart extends React.Component {
 
     _onHighlight(highlighted) {
         console.log("highlighted", highlighted)
         this.props.highlight(highlighted);
-        //this.props.highlightInChart(this.props.config.modeId, this.props.config.layerId, this.props.config.dim, highlighted);
     }
 
     _onSelect(selected) {
         console.log("selected")
-        // this.props.selectInChart(
-        //     this.props.config.modeId, this.props.config.layerId, this.props.config.dim, 
-        //     selected === this.props.layer.selected[this.props.config.dim] ? null : selected
-        // );
+
     }
 
     render() {
-        // if (!this.props.config.data) {
-        //     return <div />;
-        // }
-
-        // var highlighted = null;
-        // if  (this.props.layer.highlighted[this.props.config.dim] !== undefined) {
-        //      highlighted = this.props.layer.highlighted[this.props.config.dim].x;
-        // }
-
-        // const data = this.props.config.data.map(d => {
-        //     let color = "#125C77";
-        //     if (d.x === this.props.layer.selected[this.props.config.dim]) {
-        //         color = "#19CDD7";
-        //     } else if (d.x === highlighted) {
-        //         color = "#17B8BE";
-        //     }
-        //     return { ...d, color };
-        // });
-
 
         var maxString = 12;
-        //console.log("Chart49", this.props.config.data)
-        //console.log("Chart50", Object.values(this.props.config.data))
-
         var arr = []
 
+        console.log(this.props.config )
+        if (_.isEmpty(this.props.config.data) === true) return (<div/>);
+        console.log(this.props.config.data.status)
         Object.keys(this.props.config.data.status).forEach((key) => {
             arr.push({x:this.props.config.data.status[key]._id, y:this.props.config.data.status[key].count});
         })
 
         this.bottomPadding = maxString * 4 + 15;
-
-        // const title = this.props.config.dim.charAt(0).toUpperCase() + this.props.config.dim.slice(1) + " - " + this.props.layer.name;
 
         return (
             <div className="ui raised card"  
@@ -71,9 +45,7 @@ class Chart extends React.Component {
                     bottom: '20px',
                     right:  '20px',
                     width: "400px",
-                    // paddingBottom: "20px" ,
-                    // paddingLeft: "20px" ,
-                    backgroundColor: 'lightgrey',//`${themes[this.props.mapViewport.theme].statusCardColor}`,
+                    backgroundColor: 'lightgrey',
                     zIndex: '100'
                     }}>
                 <div className="content"> 
